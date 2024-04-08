@@ -4,6 +4,7 @@ import in.nucleusteq.plasma.domain.Employee;
 import in.nucleusteq.plasma.domain.JwtResponce;
 import in.nucleusteq.plasma.domain.RefreshToken;
 import in.nucleusteq.plasma.domain.RefreshTokenRequest;
+import in.nucleusteq.plasma.dto.RefreshTokenOutDto;
 import in.nucleusteq.plasma.service.JwtService;
 import in.nucleusteq.plasma.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,8 @@ public class RefreshTokenController {
     private JwtService jwtService;
 
     @PostMapping("/create")
-    public RefreshToken createRefreshToken(@RequestParam String userName) {
+    public RefreshTokenOutDto createRefreshToken(@RequestParam String userName) {
         return refreshTokenService.createRefreshToken(userName);
-    }
-    @GetMapping("/verify")
-    public RefreshToken verifyRefreshToken(@RequestParam String refreshToken) {
-        return refreshTokenService.verfiyRefershToken(refreshToken);
     }
     @PostMapping("/refresh")
     public JwtResponce refreshJwtToken(@RequestBody RefreshTokenRequest request){

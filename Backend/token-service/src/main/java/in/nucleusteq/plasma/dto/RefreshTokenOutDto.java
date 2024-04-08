@@ -1,25 +1,17 @@
-package in.nucleusteq.plasma.domain;
-
-import jakarta.persistence.*;
+package in.nucleusteq.plasma.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-
-@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "refresh_token")
-public class RefreshToken {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+public class RefreshTokenOutDto {
     private int tokenId;
     private String refreshToken;
     private Instant expiry;
-    @OneToOne
-    private Employee employee;
+    private String userName;
 }

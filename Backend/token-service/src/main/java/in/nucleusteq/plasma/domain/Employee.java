@@ -21,7 +21,6 @@ import lombok.*;
 @Entity
 @Table(name = "user_table")
 public class Employee {
-
 	@Id
 	@Column(name = "user_id", unique = true)
 	private String userId;
