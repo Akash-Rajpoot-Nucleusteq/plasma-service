@@ -23,25 +23,33 @@ public class TokenController {
 		String token = jwtService.generateToken(username);
 		return ResponseEntity.ok(token);
 	}
+
 	@GetMapping("/validate-token")
 	public boolean validateToken(@RequestParam("token") String token) {
-	    try {
-	        String username = jwtService.getUsername(token);
-	        if (username == null) {
-	            throw new UnauthorizedAccessException("Access denied: invalid token");
-	        }
-	        UserDetails userDetails = customUserDetails.loadUserByUsername(username);
-	        return jwtService.validateToken(token, userDetails);
-	    } catch (Exception e) {
-	        return false; 
-	    }
+		try {
+			String username = jwtService.getUsername(token);
+			if (username == null) {
+				throw new UnauthorizedAccessException("Access denied: invalid token");
+			}
+			UserDetails userDetails = customUserDetails.loadUserByUsername(username);
+			return jwtService.validateToken(token, userDetails);
+		} catch (Exception e) {
+			return false;
+		}
 	}
+
+	@GetMapping("/token-expire")
+	public boolean isTokenExpired(@RequestParam("token") String token) {
+		return jwtService.isTokenExpired(token);
+	}
+
 	@GetMapping("/expiration-time")
 	public ResponseEntity<Integer> getExpirationTime(@RequestParam("token") String token) {
 
 		int expirationTimeInSeconds = jwtService.getExpirationTimeInSeconds(token);
 		return ResponseEntity.ok(expirationTimeInSeconds);
 	}
+
 	@GetMapping("/username")
 	public ResponseEntity<String> getUserName(@RequestParam("token") String token) {
 

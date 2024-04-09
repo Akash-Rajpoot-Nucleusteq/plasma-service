@@ -2,20 +2,18 @@ package in.nucleusteq.plasma.dto.in;
 
 import lombok.Getter;
 import lombok.Setter;
-
+/**
+ * Data transfer object (DTO) for representing a Login In Details.
+ */
 @Getter
 @Setter
 public class LoginInDTO {
-	
-	
-	
-//  @NotBlank(message = "Email is required.")
+  /**
+  * The user's email.
+  */
   private String email;
-
   /**
    * The user's password.
    */
-//  @NotBlank(message = "Password is required.")
   private String password;
-
 }

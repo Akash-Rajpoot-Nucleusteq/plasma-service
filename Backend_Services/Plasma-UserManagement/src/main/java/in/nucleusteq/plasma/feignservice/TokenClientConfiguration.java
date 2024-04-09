@@ -19,11 +19,11 @@ public class TokenClientConfiguration {
 		/**
 		 * Initial interval millis.
 		 */
-		public static final int INITIAL_INTERVAL_MILLIS = 100000;
+		public static final int INITIAL_INTERVAL_MILLIS = 1000000;
 		/**
 		 * Max interval millis.
 		 */
-		public static final int MAX_INTERVAL_MILLIS = 100000;
+		public static final int MAX_INTERVAL_MILLIS = 1000000;
 		/**
 		 * This method defines a bean for creating a Feign Builder with Hystrix
 		 * integration. Feign Builder is responsible for creating Feign clients, and by

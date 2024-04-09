@@ -11,12 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+/**
+ * Entity class representing a Skills.
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -40,7 +43,8 @@ public class Skills {
     @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
     private List<UserSkill> employeeSkills;
     /**
-     * skills
+     * skills.
+     * @param skillName
      */
     public Skills(String skillName) {
         super();

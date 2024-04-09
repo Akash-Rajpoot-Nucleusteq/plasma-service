@@ -1,5 +1,14 @@
 package in.nucleusteq.plasma.enums;
-
+/**
+ * Enum representing the nature of employment.
+ */
 public enum EmploymentNature {
-    FULLTIME, CONTRACT
+    /**
+     * FullTime.
+     */
+    FULLTIME,
+    /**
+     * Contract.
+     */
+    CONTRACT
 }

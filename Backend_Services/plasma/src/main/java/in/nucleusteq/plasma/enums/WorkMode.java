@@ -1,5 +1,14 @@
 package in.nucleusteq.plasma.enums;
-
+/**
+ * Enum representing the Work mode.
+ */
 public enum WorkMode {
-    REMOTE, OFFICE
+    /**
+     * Remote.
+     */
+    REMOTE,
+    /**
+     * Office.
+     */
+    OFFICE
 }

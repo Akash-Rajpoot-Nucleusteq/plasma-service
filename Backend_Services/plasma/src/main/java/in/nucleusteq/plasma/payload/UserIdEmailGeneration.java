@@ -3,8 +3,15 @@ package in.nucleusteq.plasma.payload;
 import java.util.Random;
 
 import in.nucleusteq.plasma.constants.UserConstants;
-
+/**
+ * Utility class for generating user IDs, emails, and passwords.
+ */
 public class UserIdEmailGeneration {
+    /**
+     * Generates a new user ID based on the last user ID provided.
+     * @param lastUserId The last user ID generated
+     * @return A new user ID
+     */
     public static String generateUserId(String lastUserId) {
         int lastUserIdNumber = 0;
         if (lastUserId != null && !lastUserId.isEmpty()) {
@@ -14,12 +21,20 @@ public class UserIdEmailGeneration {
         int newUserIdNumber = lastUserIdNumber + 1;
         return "N" + String.format("%04d", newUserIdNumber);
     }
-
+    /**
+     * Generates a new email address based on the provided first name and last name.
+     * @param firstName The first name of the user
+     * @param lastName  The last name of the user
+     * @return A new email address
+     */
     public static String generateEmail(String firstName, String lastName) {
         return firstName.toLowerCase() + "." + lastName.toLowerCase()
                 + UserConstants.EMAIL_DOMAIN;
     }
-
+    /**
+     * Generates a new random password.
+     * @return A new random password
+     */
     public static String generatePassword() {
         StringBuilder password = new StringBuilder();
         password.append(UserConstants.UPPERCASE_CHARS
@@ -35,5 +50,19 @@ public class UserIdEmailGeneration {
                     allChars.charAt(new Random().nextInt(allChars.length())));
         }
         return password.toString();
+    }
+    /**
+     * Generates a new user ID based on the last user ID provided.
+     * @param lastVendorId The last user ID generated
+     * @return A new user ID
+     */
+    public static String generateVendorId(String lastVendorId) {
+        int lastVendorIdNumber = 0;
+        if (lastVendorId != null && !lastVendorId.isEmpty()) {
+            lastVendorIdNumber = Integer
+                    .parseInt(lastVendorId.replaceAll("[^0-9]", ""));
+        }
+        int newUserIdNumber = lastVendorIdNumber + 1;
+        return "V" + String.format("%04d", newUserIdNumber);
     }
 }

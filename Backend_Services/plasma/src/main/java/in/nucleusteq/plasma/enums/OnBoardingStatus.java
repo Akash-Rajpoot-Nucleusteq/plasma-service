@@ -1,5 +1,18 @@
 package in.nucleusteq.plasma.enums;
-
+/**
+ * Enum representing the status of on boarding.
+ */
 public enum OnBoardingStatus {
-    PENDING, APPROVED, REJECT
+    /**
+     * Pending.
+     */
+    PENDING,
+    /**
+     * Approved.
+     */
+    APPROVED,
+    /**
+     * Reject.
+     */
+    REJECT
 }

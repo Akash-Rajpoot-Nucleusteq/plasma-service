@@ -12,30 +12,47 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+/**
+ * Entity class representing an asset allocation.
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "assets_allocation")
 public class AssetAllocation {
+    /**
+     * Asset Allocation ID.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assets_allocation_id")
     private int assetsAllocationId;
+    /**
+     * Allocation Date.
+     */
     @Column(name = "allocation_date")
     private Date allocationDate;
+    /**
+     * Deallocation Date.
+     */
     @Column(name = "deallocation_date")
     private Date deallocationDate;
+    /**
+     * Asset ID.
+     */
     @OneToOne
     @JoinColumn(name = "assets_id")
     private Asset assetsId;
+    /**
+     * EmployeeId.
+     */
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employeeId;
-
 }

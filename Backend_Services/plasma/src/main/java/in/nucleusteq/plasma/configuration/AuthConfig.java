@@ -58,10 +58,7 @@ public class AuthConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/plasma/authenticate/login").permitAll()
-						.requestMatchers("/plasma/authenticate/logout").permitAll()
-						.anyRequest().authenticated())
+				.authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();

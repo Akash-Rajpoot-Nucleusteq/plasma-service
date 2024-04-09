@@ -1,24 +1,20 @@
 package in.nucleusteq.plasma.dto.in.user;
 
 import in.nucleusteq.plasma.enums.OnBoardingStatus;
-
+import lombok.Getter;
+import lombok.Setter;
+/**
+ * Data transfer object (DTO) for representing a Reject OnBorad In DTO.
+ */
+@Getter
+@Setter
 public class RejectOnBoardInDTO {
+    /**
+     * OnBoard Details Id.
+     */
     private int id;
+    /**
+     * OnBoarding Status.
+     */
     private OnBoardingStatus onBoardingStatus;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public OnBoardingStatus getOnBoardingStatus() {
-        return onBoardingStatus;
-    }
-
-    public void setOnBoardingStatus(OnBoardingStatus onBoardingStatus) {
-        this.onBoardingStatus = onBoardingStatus;
-    }
 }

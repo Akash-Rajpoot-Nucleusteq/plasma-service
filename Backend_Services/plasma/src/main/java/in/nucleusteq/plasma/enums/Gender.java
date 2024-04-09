@@ -1,5 +1,18 @@
 package in.nucleusteq.plasma.enums;
-
+/**
+ * Enum representing the Gender.
+ */
 public enum Gender {
-    FEMALE, MALE, OTHER
+    /**
+     * Female.
+     */
+    FEMALE,
+    /**
+     * Male.
+     */
+    MALE,
+    /**
+     * Other.
+     */
+    OTHER
 }

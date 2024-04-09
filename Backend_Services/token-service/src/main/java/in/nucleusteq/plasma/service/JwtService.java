@@ -13,6 +13,7 @@ import javax.crypto.SecretKey;
 import in.nucleusteq.plasma.dao.EmployeeRepository;
 import in.nucleusteq.plasma.domain.Employee;
 import in.nucleusteq.plasma.domain.Role;
+import in.nucleusteq.plasma.exception.RequestTimeOutException;
 import in.nucleusteq.plasma.exception.UnauthorizedAccessException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,24 +37,26 @@ public class JwtService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
+	@Autowired
+	private RefreshTokenService refreshTokenService;
+	
 	public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
 	public Boolean validateToken(String token, UserDetails userDetails) {
 
-		try {
 			Jwts.parser().verifyWith(getSignKey()).build().parseSignedClaims(token);
 			final String username = getUsername(token);
-			return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-		} catch (ExpiredJwtException e) {
-			throw new UnauthorizedAccessException("Token expired token");
-
-		} catch (MalformedJwtException e) {
-			throw new UnauthorizedAccessException("Some changed has done in token !! Invalid Token");
-		} catch (SignatureException e) {
-			throw new UnauthorizedAccessException("Access denied: Invalid token");
-		}
+			return (username.equals(userDetails.getUsername()));
+	
 	}
 
+	public Boolean isTokenExpired(String token) {
+		try {
+		return extractExpiration(token).before(new Date());
+		 } catch (ExpiredJwtException | MalformedJwtException | SignatureException e) {
+			 throw new UnauthorizedAccessException("invalid token");
+	    }
+	}
 	public String getUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
 	}
@@ -71,9 +74,7 @@ public class JwtService {
 		return Jwts.parser().verifyWith(getSignKey()).build().parseSignedClaims(token).getPayload();
 	}
 
-	private Boolean isTokenExpired(String token) {
-		return extractExpiration(token).before(new Date());
-	}
+	
 
 	public String generateToken(String userName) {
 		Map<String, Object> claims = new HashMap<>();

@@ -8,12 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+/**
+ * Entity class representing a User Address.
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -60,13 +63,22 @@ public class UserAddress {
      */
     @OneToOne(mappedBy = "userAddress")
     private UserPersonalDetail userPersonalDetail;
-	public UserAddress(String address1, String address2, String city, String state, String country, int zipCode) {
-		super();
-		this.address1 = address1;
-		this.address2 = address2;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.zipCode = zipCode;
-	}
+    /**
+     * Constructor.
+     * @param address1
+     * @param address2
+     * @param city
+     * @param state
+     * @param country
+     * @param zipCode
+     */
+    public UserAddress(String address1, String address2, String city, String state, String country, int zipCode) {
+        super();
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+    }
 }
